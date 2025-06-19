@@ -16,16 +16,13 @@ class TextDataSource(BaseDataSource):
 
     def __call__(
             self,
-            path: str | Path,
+            path: Path,
             **kwargs
     ) -> Context:
         """
         :param path: Path to a file.
         :return: ``Context`` as metadata ``filename`` is provided.
         """
-
-        filename = path.split('/')[-1]
-
         if not self._is_text_file(path):
             raise FileTypeError(f'File: `{path}` is not a text file.')
 
@@ -34,7 +31,7 @@ class TextDataSource(BaseDataSource):
 
         return Context(
             ctx_units=[ctx_unit],
-            filename=filename
+            name=path.stem
         )
 
     @staticmethod
