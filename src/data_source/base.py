@@ -5,7 +5,7 @@ from src.core.base import Context
 
 class BaseDataSource(ABC):
     """
-    Interface, that defines methods to load data sources into `Context`.
+    Interface, that defines methods to load data sources into ``Context``.
     """
 
     @abstractmethod

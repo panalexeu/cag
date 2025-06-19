@@ -5,7 +5,7 @@ from .base import Context
 
 
 class BaseCtxFormatter(ABC):
-    """Interface, that defines methods to format `Context`"""
+    """Interface, that defines methods to format ``Context``"""
 
     @abstractmethod
     def __call__(self, context: Context) -> Any:

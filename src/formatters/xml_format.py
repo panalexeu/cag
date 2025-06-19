@@ -7,6 +7,8 @@ from ..core.base import Context
 
 
 class XMLCtxFormatter(BaseCtxFormatter):
+    """Formats ``Context`` into unified XML, text file."""
+
     def __call__(self, context: Context) -> str:
         root = ET.Element(
             'Context',

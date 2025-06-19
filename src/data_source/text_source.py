@@ -11,7 +11,7 @@ class TextDataSource(BaseDataSource):
     """
     Loads simple, non-binary, text files into `Context`.
 
-    Depends on `python-magic` package (libmagic).
+    Depends on ``python-magic`` package (libmagic).
     """
 
     def __call__(self, path: str, **kwargs) -> Context:

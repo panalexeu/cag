@@ -1,6 +1,6 @@
 class ContextUnit:
     """
-    Represents one context unit in a CachedContext.
+    Represents one context unit in a ``CachedContext``.
 
     Could be a PDF document page, presentation slide, image, etc.
 
@@ -20,7 +20,7 @@ class Context:
     """
     Represents context of a whole document.
 
-    Consists of ContextUnits. Also stores metadata.
+    Consists of ``ContextUnit``'s. Also stores metadata.
     """
 
     def __init__(
