@@ -51,5 +51,5 @@ class XMLCtxFormatter(BaseCtxFormatter):
         if not name:
             name = self.ctx.metadata.get('name')
 
-        with open(path.joinpath(name + '.xlm'), 'w') as file:
+        with open(path.joinpath(name + '.xml'), 'w') as file:
             file.write(self.format_ctx)

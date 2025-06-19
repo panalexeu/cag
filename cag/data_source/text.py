@@ -31,7 +31,7 @@ class TextDataSource(BaseDataSource):
 
         return Context(
             ctx_units=[ctx_unit],
-            name=path.stem
+            name=path.name
         )
 
     @staticmethod
