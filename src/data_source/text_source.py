@@ -9,7 +9,7 @@ from .error import FileTypeError
 
 class TextDataSource(BaseDataSource):
     """
-    Loads simple, non-binary, text files into `Context`.
+    Loads simple, non-binary, text files into ``Context``.
 
     Depends on ``python-magic`` package (libmagic).
     """
