@@ -2,9 +2,9 @@ import os
 from tempfile import NamedTemporaryFile
 import pytest
 
-from src.core.base import Context
-from src.data_source.text_source import TextDataSource
-from src.data_source.error import FileTypeError
+from cag.core.base import Context
+from cag.data_source.text_source import TextDataSource
+from cag.data_source.error import FileTypeError
 
 
 @pytest.fixture()

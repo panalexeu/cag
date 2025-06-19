@@ -1,5 +1,5 @@
-from src.core.base import Context, ContextUnit
-from src.formatters.xml_format import XMLCtxFormatter
+from cag.core.base import Context, ContextUnit
+from cag.formatters.xml_format import XMLCtxFormatter
 
 
 def test_ctx_xml_formatter():

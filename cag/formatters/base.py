@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
-from src.core.base import Context
+from cag.core.base import Context
 
 
 class BaseCtxFormatter(ABC):

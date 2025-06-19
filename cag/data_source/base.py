@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.core.base import Context
+from cag.core.base import Context
 
 
 class BaseDataSource(ABC):
