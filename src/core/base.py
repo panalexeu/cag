@@ -16,7 +16,7 @@ class ContextUnit:
         self.metadata = kwargs
 
 
-class Contex:
+class Context:
     """
     Represents context of a whole document.
 
