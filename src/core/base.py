@@ -15,6 +15,16 @@ class ContextUnit:
         self.content = content
         self.metadata = kwargs
 
+    def __repr__(self):
+        prefix = '<ContextUnit'
+
+        for key, val in self.metadata.items():
+            prefix += f' {key}="{val}",'
+
+        prefix += f' content="{self.content[:64]}">'
+
+        return prefix
+
 
 class Context:
     """
@@ -30,3 +40,20 @@ class Context:
     ):
         self.ctx_units = ctx_units
         self.metadata = kwargs
+
+    def __repr__(self):
+        prefix = '<Context'
+
+        for key, val in self.metadata.items():
+            prefix += f' {key}="{val}",'
+
+        prefix += ' units=['
+
+        for i, unit in enumerate(self.ctx_units):
+            if i == len(self.ctx_units) -1:
+                prefix += f'{str(unit)}]>'
+                break
+
+            prefix += f'{str(unit)}, '
+
+        return prefix
