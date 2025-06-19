@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from magic import from_buffer
 
 from .base import BaseDataSource
@@ -12,7 +14,11 @@ class TextDataSource(BaseDataSource):
     Depends on ``python-magic`` package (libmagic).
     """
 
-    def __call__(self, path: str, **kwargs) -> Context:
+    def __call__(
+            self,
+            path: str | Path,
+            **kwargs
+    ) -> Context:
         """
         :param path: Path to a file.
         :return: ``Context`` as metadata ``filename`` is provided.
