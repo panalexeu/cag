@@ -1,6 +1,5 @@
-from typing import Any
-from xml.dom import minidom
 import xml.etree.ElementTree as ET
+from xml.dom import minidom
 
 from .base import BaseCtxFormatter
 from ..core.base import Context

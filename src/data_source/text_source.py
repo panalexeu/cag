@@ -1,5 +1,3 @@
-import os
-
 from magic import from_buffer
 
 from .base import BaseDataSource
