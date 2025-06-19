@@ -17,9 +17,9 @@ def test_ctx_xml_formatter():
         ctx_units,
         filename='hello_world.txt'
     )
-    formatter = XMLCtxFormatter()
+    formatter = XMLCtxFormatter(ctx)
 
-    res = formatter.__call__(ctx)
+    res = formatter.__call__()
 # <Context filename="hello_world.txt">
 #         <ContextUnit page_n="0">Hello,</ContextUnit>
 #         <ContextUnit page_n="1">World!</ContextUnit>

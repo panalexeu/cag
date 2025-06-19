@@ -16,7 +16,7 @@ class BaseCtxFormatter(ABC):
         self.ctx = ctx
 
     @abstractmethod
-    def __call__(self, *args, **kwargs) -> Any:
+    def __call__(self) -> Any:
         """Define formatting logic here."""
         pass
 
