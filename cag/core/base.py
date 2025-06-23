@@ -21,7 +21,9 @@ class ContextUnit:
         for key, val in self.metadata.items():
             prefix += f' {key}="{val}",'
 
-        prefix += f' content="{self.content[:64]}...">'
+        format_content = self.content[:64].replace('\n', ' ')
+
+        prefix += f' content="{format_content}...">'
 
         return prefix
 
@@ -50,7 +52,7 @@ class Context:
         prefix += ' ctx_units=['
 
         for i, unit in enumerate(self.ctx_units):
-            if i == len(self.ctx_units) -1:
+            if i == len(self.ctx_units) - 1:
                 prefix += f'{str(unit)}]>'
                 break
 
