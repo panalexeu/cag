@@ -65,12 +65,18 @@ class Context:
 
         return prefix
 
-    def merge(self, ctxs: list[Self]):
+    def merge(self, ctxs: list[Self]) -> Self:
         """
         The object on which merge is called, is prioritized above the ones that are passed.
         Metadata of the root content is shifted to ContextUnit's.
         """
+        ctx_units = []
+        ctxs.extend(self)
         for ctx in ctxs:
             for unit in ctx.ctx_units:
                 unit.metadata.update(ctx.metadata)
-                self.ctx_units.append(unit)
+                ctx_units.append(unit)
+
+        return Context(
+            ctx_units=ctx_units
+        )
