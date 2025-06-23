@@ -36,7 +36,7 @@ class TextDataSource(BaseDataSource):
 
     def _is_valid(self, path: Path, **kwargs) -> bool:
         with open(path, 'rb') as file:
-            file_type = from_buffer(file.read(2048))
+            file_type = from_buffer(file.read(2048), mime=True)
 
         return 'text' in file_type
 
