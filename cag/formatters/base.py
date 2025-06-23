@@ -15,6 +15,12 @@ class BaseCtxFormatter(ABC):
     ):
         self.ctx = ctx
 
+    @classmethod
+    @abstractmethod
+    def load(cls, path: Path) -> Self:
+        """Defines ``Context`` instantiating from a file logic."""
+        pass
+
     @abstractmethod
     def __call__(self) -> Any:
         """Define formatting logic here."""
@@ -23,11 +29,6 @@ class BaseCtxFormatter(ABC):
     @abstractmethod
     def save(self, path: Path, name: str | None = None) -> None:
         """Define storing logic here."""
-        pass
-
-    @abstractmethod
-    def load(self, path: Path) -> Self:
-        """Defines loading ``Context`` from a file into an object logic."""
         pass
 
     @abstractmethod

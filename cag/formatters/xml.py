@@ -1,10 +1,11 @@
 import xml.etree.ElementTree as ET
+from typing import Self
 from xml.dom import minidom
 
 from pathlib import Path
 
 from .base import BaseCtxFormatter
-from ..core.base import Context
+from ..core.base import Context, ContextUnit
 
 
 class XMLCtxFormatter(BaseCtxFormatter):
@@ -16,6 +17,30 @@ class XMLCtxFormatter(BaseCtxFormatter):
     ):
         super().__init__(ctx)
         self.format_ctx = None
+
+    @classmethod
+    def load(cls, path: Path) -> Self:
+        with open(path, 'r') as file:
+            xml_str = file.read()
+
+        # parsing Context
+        root: ET.Element = ET.fromstring(xml_str)
+        ctx = Context(**root.attrib)
+
+        # parsing ContextUnit's
+        ctx_units = []
+        for child in root:
+            ctx_units.append(
+                ContextUnit(
+                    child.text,
+                    **child.attrib
+                )
+            )
+
+        # update units field
+        ctx.ctx_units = ctx_units
+
+        return XMLCtxFormatter(ctx=ctx)
 
     def __call__(self) -> str:
         root = ET.Element(
@@ -53,3 +78,6 @@ class XMLCtxFormatter(BaseCtxFormatter):
 
         with open(path.joinpath(name + '.xml'), 'w') as file:
             file.write(self.format_ctx)
+
+    def merge(self, ctxs: list[Context]) -> Self:
+        pass
