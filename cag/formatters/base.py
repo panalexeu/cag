@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any
+from typing import Any, Self
 
 from pathlib import Path
 
@@ -23,4 +23,14 @@ class BaseCtxFormatter(ABC):
     @abstractmethod
     def save(self, path: Path, name: str | None = None) -> None:
         """Define storing logic here."""
+        pass
+
+    @abstractmethod
+    def load(self, path: Path) -> Self:
+        """Defines loading ``Context`` from a file into an object logic."""
+        pass
+
+    @abstractmethod
+    def merge(self, ctxs: list[Context]) -> Self:
+        """Defines ``Context`` merging logic."""
         pass
