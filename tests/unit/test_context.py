@@ -21,7 +21,7 @@ def test_context_merges():
         name='test2'
     )
 
-    ctx = ctx1.merge([ctx2])
+    ctx = Context.merge([ctx1, ctx2])
 
     assert len(ctx.ctx_units) == 2
     assert ctx.ctx_units[0].content == 'hey!'

@@ -65,13 +65,13 @@ class Context:
 
         return prefix
 
-    def merge(self, ctxs: list[Self]) -> Self:
+    @classmethod
+    def merge(cls, ctxs: list[Self]) -> Self:
         """
         Merge ``Context``s into one
         """
         ctx_units = []
-        all_ctxs = [self] + ctxs
-        for ctx in all_ctxs:
+        for ctx in ctxs:
             for unit in ctx.ctx_units:
                 unit.metadata.update(ctx.metadata)
                 ctx_units.append(unit)
