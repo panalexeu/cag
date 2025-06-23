@@ -7,7 +7,7 @@ from openai import OpenAI
 
 from .base import BaseDataSource
 from .error import FileTypeError
-from ..core.base import Context
+from ..core.base import Context, ContextUnit
 
 
 class ImgOpenAIDataSource(BaseDataSource):
@@ -26,7 +26,7 @@ class ImgOpenAIDataSource(BaseDataSource):
         self.model = model
         self.api_key = api_key
         self.sync_client = OpenAI(
-            api_key=api_key if api_key else os.environ.get('OPENAI_API_KEY'),
+            api_key=api_key,
             **kwargs
         )
 
@@ -53,7 +53,14 @@ class ImgOpenAIDataSource(BaseDataSource):
             }]
         )
 
-        return res.choices[0].message.content
+        ctx_unit = ContextUnit(
+            content=res.choices[0].message.content
+        )
+
+        return Context(
+            ctx_units=[ctx_unit],
+            name=path.name
+        )
 
     def _is_valid(self, path: Path, **kwargs) -> bool:
         file_type = from_file(path, mime=True)
