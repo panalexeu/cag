@@ -74,6 +74,8 @@ class XMLCtxFormatter(BaseCtxFormatter):
         :param name: Storing ``Context`` name without extension.
         :param path: Storing directory.
         """
+        self.__call__()  # format
+
         if not name:
             name = self.ctx.metadata.get('name')
 
