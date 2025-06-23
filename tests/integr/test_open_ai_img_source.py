@@ -10,12 +10,10 @@ from cag.data_source.img_openai import ImgOpenAIDataSource
 def data_source():
     load_dotenv()
     yield ImgOpenAIDataSource(
-        model='gpt-4.1-mini'
+        model='gpt-4.1-nano'
     )
 
 
 def test_img_openai_datasource_extracts_content(data_source):
-    res = data_source(path=Path('./tests/integr/assets/macintosh.png'))
-    print(res)
-
-    breakpoint()
+    res = data_source(path=Path('./tests/integr/assets/macintosh.png'), temperature=0)
+    assert 'macintosh' in res.ctx_units[0].content.lower()

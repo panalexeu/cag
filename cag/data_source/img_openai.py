@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 from base64 import b64encode
 
@@ -39,18 +38,25 @@ class ImgOpenAIDataSource(BaseDataSource):
         # request to openai
         res = self.sync_client.chat.completions.create(
             model=self.model,
-            messages=[{
-                'role': 'system',
-                'content': [
-                    {'type': 'text', 'text': self.sys_prompt},
-                    {
-                        'type': 'image_url',
-                        'image_url': {
-                            'url': self._form_img_url(path=path, b64=content)
+            messages=[
+                {
+                    'role': 'system',
+                    'content': self.sys_prompt
+                },
+                {
+                    'role': 'user',
+                    'content': [
+                        {'type': 'text', 'text': 'Here is the image.'},
+                        {
+                            'type': 'image_url',
+                            'image_url': {
+                                'url': self._form_img_url(path=path, b64=content)
+                            }
                         }
-                    }
-                ]
-            }]
+                    ]
+                }
+            ],
+            **kwargs
         )
 
         ctx_unit = ContextUnit(
@@ -71,6 +77,9 @@ class ImgOpenAIDataSource(BaseDataSource):
             enc = b64encode(file.read())
             b64_str = enc.decode('utf-8')
 
+            with open('test', 'w') as file:
+                file.write(b64_str)
+
             return b64_str
 
     @staticmethod
@@ -80,6 +89,6 @@ class ImgOpenAIDataSource(BaseDataSource):
     @property
     def sys_prompt(self) -> str:
         return """You are a helpful AI assistant.
-Provide a detailed, concise description of what is depicted in the image.
+Provide a detailed, concise description of what is depicted in the provided image.
 Additionally, include any quoted or visible text content in the image to extract the full context.
 """
