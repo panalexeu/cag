@@ -37,7 +37,7 @@ class Context:
 
     def __init__(
             self,
-            ctx_units: list[ContextUnit] | None = None,
+            ctx_units: list[ContextUnit],
             **kwargs
     ):
         self.ctx_units = ctx_units
@@ -51,18 +51,14 @@ class Context:
             prefix += f' {key}="{val}"'
 
         # ctx units
-        if self.ctx_units:
-            prefix += ' ctx_units=['
+        prefix += ' ctx_units=['
 
-            for i, unit in enumerate(self.ctx_units):
-                if i == len(self.ctx_units) - 1:
-                    prefix += f'{str(unit)}]>'
-                    break
+        for i, unit in enumerate(self.ctx_units):
+            if i == len(self.ctx_units) - 1:
+                prefix += f'{str(unit)}]>'
+                break
 
-                prefix += f'{str(unit)}, '
-
-        # no ctx units
-        else:
-            prefix += '>'
+            prefix += f'{str(unit)}, '
 
         return prefix
+
