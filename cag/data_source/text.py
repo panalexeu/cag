@@ -23,10 +23,10 @@ class TextDataSource(BaseDataSource):
         :param path: Path to a file.
         :return: ``Context`` as metadata ``filename`` is provided.
         """
-        if not self._is_text_file(path):
+        if not self._is_valid(path):
             raise FileTypeError(f'File: `{path}` is not a text file.')
 
-        content = self._read_file(path)
+        content = self._read(path)
         ctx_unit = ContextUnit(content)
 
         return Context(
@@ -34,14 +34,12 @@ class TextDataSource(BaseDataSource):
             name=path.name
         )
 
-    @staticmethod
-    def _is_text_file(path: str) -> bool:
+    def _is_valid(self, path: Path, **kwargs) -> bool:
         with open(path, 'rb') as file:
             file_type = from_buffer(file.read(2048))
 
         return 'text' in file_type
 
-    @staticmethod
-    def _read_file(path: str) -> str:
+    def _read(self, path: Path, **kwargs) -> str:
         with open(path, 'r') as file:
             return file.read()
