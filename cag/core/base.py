@@ -37,7 +37,7 @@ class Context:
 
     def __init__(
             self,
-            ctx_units: list[ContextUnit],
+            ctx_units: list[ContextUnit] | None = None,
             **kwargs
     ):
         self.ctx_units = ctx_units
@@ -46,16 +46,23 @@ class Context:
     def __repr__(self):
         prefix = '<Context'
 
+        # metadata fields
         for key, val in self.metadata.items():
-            prefix += f' {key}="{val}",'
+            prefix += f' {key}="{val}"'
 
-        prefix += ' ctx_units=['
+        # ctx units
+        if self.ctx_units:
+            prefix += ' ctx_units=['
 
-        for i, unit in enumerate(self.ctx_units):
-            if i == len(self.ctx_units) - 1:
-                prefix += f'{str(unit)}]>'
-                break
+            for i, unit in enumerate(self.ctx_units):
+                if i == len(self.ctx_units) - 1:
+                    prefix += f'{str(unit)}]>'
+                    break
 
-            prefix += f'{str(unit)}, '
+                prefix += f'{str(unit)}, '
+
+        # no ctx units
+        else:
+            prefix += '>'
 
         return prefix
