@@ -67,12 +67,11 @@ class Context:
 
     def merge(self, ctxs: list[Self]) -> Self:
         """
-        The object on which merge is called, is prioritized above the ones that are passed.
-        Metadata of the root content is shifted to ContextUnit's.
+        Merge ``Context``s into one
         """
         ctx_units = []
-        ctxs.extend(self)
-        for ctx in ctxs:
+        all_ctxs = [self] + ctxs
+        for ctx in all_ctxs:
             for unit in ctx.ctx_units:
                 unit.metadata.update(ctx.metadata)
                 ctx_units.append(unit)
