@@ -14,6 +14,7 @@ class BaseCtxFormatter(ABC):
             ctx: Context,
     ):
         self.ctx = ctx
+        self.format_ctx = self.__call__()
 
     @classmethod
     @abstractmethod

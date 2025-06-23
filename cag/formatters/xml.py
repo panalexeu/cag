@@ -16,7 +16,6 @@ class XMLCtxFormatter(BaseCtxFormatter):
             ctx: Context,
     ):
         super().__init__(ctx)
-        self.format_ctx = None
 
     @classmethod
     def load(cls, path: Path) -> Self:
@@ -74,8 +73,6 @@ class XMLCtxFormatter(BaseCtxFormatter):
         :param name: Storing ``Context`` name without extension.
         :param path: Storing directory.
         """
-        self.__call__()  # format
-
         if not name:
             name = self.ctx.metadata.get('name')
 
