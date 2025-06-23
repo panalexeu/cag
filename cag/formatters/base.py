@@ -30,8 +30,3 @@ class BaseCtxFormatter(ABC):
     def save(self, path: Path, name: str | None = None) -> None:
         """Define storing logic here."""
         pass
-
-    @abstractmethod
-    def merge(self, ctxs: list[Context]) -> Self:
-        """Defines ``Context`` merging logic."""
-        pass

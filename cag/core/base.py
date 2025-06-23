@@ -1,3 +1,6 @@
+from typing import Self
+
+
 class ContextUnit:
     """
     Represents one context unit in a ``CachedContext``.
@@ -62,3 +65,11 @@ class Context:
 
         return prefix
 
+    def merge(self, ctxs: list[Self]):
+        """
+        The object on which merge is called, is prioritized above the ones that are passed.
+        """
+        for ctx in ctxs:
+            for unit in ctx.ctx_units:
+                unit.metadata.update(ctx.metadata)
+                self.ctx_units.append(unit)

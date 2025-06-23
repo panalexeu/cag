@@ -23,11 +23,9 @@ class XMLCtxFormatter(BaseCtxFormatter):
         with open(path, 'r') as file:
             xml_str = file.read()
 
-        # parsing Context
         root: ET.Element = ET.fromstring(xml_str)
-        ctx = Context(**root.attrib)
 
-        # parsing ContextUnit's
+        # instantiate ContextUnit's
         ctx_units = []
         for child in root:
             ctx_units.append(
@@ -37,8 +35,11 @@ class XMLCtxFormatter(BaseCtxFormatter):
                 )
             )
 
-        # update units field
-        ctx.ctx_units = ctx_units
+        # instantiate Context
+        ctx = Context(
+            ctx_units,
+            **root.attrib
+        )
 
         return XMLCtxFormatter(ctx=ctx)
 
@@ -78,6 +79,3 @@ class XMLCtxFormatter(BaseCtxFormatter):
 
         with open(path.joinpath(name + '.xml'), 'w') as file:
             file.write(self.format_ctx)
-
-    def merge(self, ctxs: list[Context]) -> Self:
-        pass
