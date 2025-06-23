@@ -14,12 +14,12 @@ class BaseDataSource(ABC):
         """Defines data source ``Context`` extraction logic."""
         pass
 
-    @staticmethod
+    @abstractmethod
     def _is_valid(self, *args, **kwargs) -> bool:
         """Defines data source validation logic."""
         pass
 
-    @staticmethod
+    @abstractmethod
     def _read(self, *args, **kwargs) -> Any:
         """Defines data source reading logic."""
         pass
