@@ -76,10 +76,6 @@ class ImgOpenAIDataSource(BaseDataSource):
         with open(path, 'rb') as file:
             enc = b64encode(file.read())
             b64_str = enc.decode('utf-8')
-
-            with open('test', 'w') as file:
-                file.write(b64_str)
-
             return b64_str
 
     @staticmethod
