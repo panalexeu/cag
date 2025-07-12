@@ -1,6 +1,10 @@
 # cag  
 
-`cag` is a small Python library inspired by this [research](https://arxiv.org/html/2412.15605v1) and [repo](https://github.com/hhhuang/CAG). The idea is simple: to define various data loaders for different file formats to ingest new information into a model's context window in a stable and unified format. As a unified format, XML was chosen because of its ability to represent text structure with attributes and boundaries. However, in our unified format, only two tags are available:
+`cag` is a small Python library inspired by this [research](https://arxiv.org/html/2412.15605v1) and [repo](https://github.com/hhhuang/CAG). `cag` is used by [cag_cli](https://github.com/panalexeu/cag_cli.git).
+
+The idea is simple: to define various data loaders for different file formats to ingest new information into a model's context window in a stable and unified format. 
+
+As a unified format, XML was chosen because of its ability to represent text structure with attributes and boundaries. However, in the proposed unified format, only two tags are available:
 
 * `<Context/>` - represents a context root, e.g., a whole file;
 * `<ContextUnit/>` - represents some units inside of a file, e.g., pages in a PDF;
